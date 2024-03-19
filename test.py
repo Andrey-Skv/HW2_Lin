@@ -55,6 +55,20 @@ def test_step5():
     assert checkout(f"cd {FOLDER_TST}; 7z u {FOLDER_OUT}/arx2.7z", "Everything is Ok"), "test5 FAIL"
 
 
+def test_step6():
+    # test6
+    assert checkout(f'cd {FOLDER_OUT}; 7z l arx.7z', "arx.7z"), "test6 FAIL"
+
+
+def test_step7():
+    # test7
+    res1 = checkout(f'cd {FOLDER_TST}; 7z a {FOLDER_OUT}/arx.7z',
+                    "Everything is Ok")
+    res2 = checkout(f'cd {FOLDER_OUT}; 7z x arx.7z -o{FOLDER_1} -y',
+                    "Everything is Ok")
+    assert res1 and res2, "test7 FAIL"
+
+
 def test_neg1():
     # test1
     assert checkout_negative(f"cd {FOLDER_OUT}; 7z e arx2bad.7z -o{FOLDER_1} -y", "ERROR"), "test1 FAIL"
