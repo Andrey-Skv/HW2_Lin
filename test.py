@@ -69,6 +69,16 @@ def test_step7():
     assert res1 and res2, "test7 FAIL"
 
 
+def test_step8():
+    # test8
+    res = []
+    for i in FOLDER_TST:
+        res1 = checkout(f'cd {FOLDER_TST}; 7z h {i}', "Everything is Ok")
+        hash = getout(f'cd {FOLDER_TST}; crc32 {i}').upper()
+        res.append(checkout(f'cd {FOLDER_TST}; 7z h {i}', hash))
+    assert all(res), "test8 FAIL"
+
+
 def test_neg1():
     # test1
     assert checkout_negative(f"cd {FOLDER_OUT}; 7z e arx2bad.7z -o{FOLDER_1} -y", "ERROR"), "test1 FAIL"
