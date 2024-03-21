@@ -73,7 +73,7 @@ def test_step8():
     # test8
     res = []
     for i in FOLDER_TST:
-        res1 = checkout(f'cd {FOLDER_TST}; 7z h {i}', "Everything is Ok")
+        res.append(checkout(f'cd {FOLDER_TST}; 7z h {i}', "Everything is Ok"))
         hash = getout(f'cd {FOLDER_TST}; crc32 {i}').upper()
         res.append(checkout(f'cd {FOLDER_TST}; 7z h {i}', hash))
     assert all(res), "test8 FAIL"
